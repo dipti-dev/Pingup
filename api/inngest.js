@@ -1,9 +1,8 @@
 import { serve } from "inngest/express";
 import express from 'express';
-import { Inngest } from "inngest";
 
 // Create Inngest client
-const inngest = new Inngest({ id: "pingup-app" });
+const inngest = new (await import("inngest")).Inngest({ id: "pingup-app" });
 
 // Create a test function
 const syncUserCreation = inngest.createFunction(

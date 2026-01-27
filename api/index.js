@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
-import inngestRouter from './inngest.js';
+import inngestSimple from './inngest-simple.js';
 
 const app = express();
 
@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => res.send('Server is running'));
-app.use('/api/inngest', inngestRouter);
+app.use('/api/inngest', inngestSimple);
 
 // Error handling middleware
 app.use((error, req, res, next) => {
