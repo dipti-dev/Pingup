@@ -1,6 +1,21 @@
 import { serve } from "inngest/express";
 import express from 'express';
-import { inngest, functions } from "../server/inngest/index.js";
+import { Inngest } from "inngest";
+
+// Create Inngest client
+const inngest = new Inngest({ id: "pingup-app" });
+
+// Create a test function
+const syncUserCreation = inngest.createFunction(
+    {id:'sync-user-from-clerk'},
+    {event: 'clerk/user.created'},
+    async ({event})=>{
+        console.log('User created event received:', event.data);
+        return { success: true };
+    }
+);
+
+export const functions = [syncUserCreation];
 
 const router = express.Router();
 
