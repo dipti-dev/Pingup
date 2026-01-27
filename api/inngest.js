@@ -1,9 +1,13 @@
 import { serve } from "inngest/express";
-import { inngest } from "../server/inngest/index.js";
-import { functions } from "../server/inngest/index.js";
+import express from 'express';
+import { inngest, functions } from "../server/inngest/index.js";
 
-const app = require('../server/api/index.js');
+const router = express.Router();
 
-app.use('/api/inngest', serve({ client: inngest, functions }));
+// Inngest serve handler with all HTTP methods
+const handler = serve({ client: inngest, functions });
 
-export default app;
+// Apply handler to all methods
+router.use(handler);
+
+export default router;

@@ -1,4 +1,13 @@
 import { Inngest } from "inngest";
+import { serve } from "inngest/next";
+import { inngest } from "@/lib/inngest";
+import { functions } from "@/lib/functions"
+
+export default serve({
+  client: inngest,
+  functions,
+});
+
 
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "pingup-app" });

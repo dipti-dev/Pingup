@@ -12,7 +12,7 @@ app.get('/', (req, res) => res.send('Server is running'));
 // Error handling middleware
 app.use((error, req, res, next) => {
     console.error('Server Error:', error)
-    res.status(500).json({ 
+    res.status(300).json({ 
         error: 'Internal Server Error',
         message: error.message 
     })
