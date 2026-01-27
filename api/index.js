@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
+import { serve } from "inngest/express";
+import { inngest, functions } from "../server/inngest/index.js";
 
 const app = express();
 
@@ -8,6 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => res.send('Server is running'));
+app.use('/api/inngest', serve({ client: inngest, functions }));
 
 // Error handling middleware
 app.use((error, req, res, next) => {
